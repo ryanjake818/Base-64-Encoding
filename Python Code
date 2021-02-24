@@ -1,0 +1,42 @@
+# ---- Jake Ryan ----
+# ---Assignment – Base64 Encoding and Decoding---
+# This script will ask the user whether he/she wishes to encode or decode a file using base64.
+# The user will then be prompted for the appropriate file name.
+# The files will be in the same folder as your python script, so path is not an issue.
+
+import base64
+import os
+
+
+print('----This is a Base64 file encoding and decoding program----')
+print("***IMPORTANT: Always include the file's extension in your answers!***")
+directory = os.getcwd()
+print("The current working directory is %s" % directory)
+
+
+def main():
+    choice = input("Would you like to encode or decode a file using base64?: ").lower()
+    if choice == 'encode':
+        print("Please include the file to encode's extension (ex .jpg) in your answer.")
+        encode_file = open(input("Which file would you like to encode?: "), 'rb')
+        print("Please include file extension (ex .txt) in your answer.")
+        b64text = open(input("What name should the base64 .txt file be given?: "), 'wb')
+        b64text.write(base64.b64encode(encode_file.read()))
+        encode_file.close()
+        b64text.close()
+        return
+    elif choice == 'decode':
+        print("Please include the file to decode's extension (ex .txt) in your answer.")
+        decode_file = open(input("Which file would you like to decode?: "), 'rb')
+        print("Please include file extension (ex .jpg) in your answer.")
+        b64text2 = open(input("What name should the new .jpg file be given?: "), 'wb')
+        b64text2.write(base64.b64decode(decode_file.read()))
+        b64text2.close()
+        decode_file.close()
+        return
+    else:
+        print("That is not a valid choice, please choose either 'encode' or 'decode'")
+
+
+if __name__ == '__main__':
+    main()
